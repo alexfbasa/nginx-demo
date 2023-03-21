@@ -1,13 +1,14 @@
-FROM nginx:1.17.4
+FROM nginx:latest
 
-EXPOSE 8081
+WORKDIR /etc/nginx/
 
-USER root
+COPY nginx.conf .
 
-# support running as arbitrary user which belongs to the root group
-RUN chmod g+rwx /var/cache/nginx /var/run /var/log/nginx && \
-    addgroup nginx root
+COPY conf.d /etc/nginx/conf.d
 
-COPY nginx.conf                 /etc/nginx/
-COPY index.html                 /usr/share/nginx/html
-COPY conf.d/                    /etc/nginx/conf.d/
+COPY index.html /usr/share/nginx/html/
+
+
+EXPOSE 8080
+
+CMD ["nginx", "-g", "daemon off;"]
