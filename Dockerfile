@@ -1,4 +1,4 @@
-FROM FROM jc21/nginx-proxy-manager:2.9.22
+FROM jc21/nginx-proxy-manager:2.9.22
 
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY index.html /usr/share/nginx/html/
